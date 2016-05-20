@@ -24,9 +24,8 @@ Pod::Spec.new do |s|
   #   * Try to keep it short, snappy and to the point.
   #   * Write the description between the DESC delimiters below.
   #   * Finally, don't worry about the indent, CocoaPods strips it!
-  s.description  = <<-DESC
-Toast component for tvOS with built-in siri remote hint support.
-                   DESC
+  s.description  = "Toast component for tvOS with built-in siri remote hint support."
+
 
   s.homepage     = "https://github.com/movielala/TVOSToast"
   # s.screenshots  = "www.example.com/screenshots_1.gif", "www.example.com/screenshots_2.gif"
@@ -80,7 +79,7 @@ Toast component for tvOS with built-in siri remote hint support.
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  s.source       = { :git => "https://github.com/movielala/TVOSToast.git", :tag => "v0.8" }
+  s.source = { :git => "https://github.com/movielala/TVOSToast.git", :tag => "v0.8" }
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
@@ -91,7 +90,7 @@ Toast component for tvOS with built-in siri remote hint support.
   #  Not including the public_header_files will make all headers public.
   #
 
-  s.source_files  = "TVOSToast/TVOSToast.swift",
+  s.source_files = "TVOSToast/TVOSToast.swift"
 
   # s.public_header_files = "Classes/**/*.h"
 
@@ -105,7 +104,8 @@ Toast component for tvOS with built-in siri remote hint support.
   #
 
   # s.resource  = "icon.png"
-  s.resource_bundle = "TVOSToastResourceBundle" => ["TVOSToast/Resources/*.png"]
+  
+  s.resource_bundles = { 'TVOSToastResourceBundle' => ['TVOSToast/Resources/*.png'] }
 
   # s.preserve_paths = "FilesToSave", "MoreFilesToSave"
 
