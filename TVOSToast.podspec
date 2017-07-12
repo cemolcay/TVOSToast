@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "TVOSToast"
-  s.version      = "0.9"
+  s.version      = "0.10"
   s.summary      = "Toast component for tvOS with built-in siri remote hint support"
 
   # This description is used to generate tags and improve search results.
