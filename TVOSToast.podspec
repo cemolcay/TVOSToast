@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "TVOSToast"
-  s.version      = "0.10"
+  s.version      = "0.10a"
   s.summary      = "Toast component for tvOS with built-in siri remote hint support"
 
   # This description is used to generate tags and improve search results.
@@ -80,7 +80,7 @@ Toast component for tvOS with built-in siri remote hint support.
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  s.source       = { :git => "https://github.com/svtek/TVOSToast.git", :tag => "#{s.version}" }
+  s.source       = { :git => "https://github.com/DoubleNodeOpen/TVOSToast.git", :tag => "#{s.version}" }
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
