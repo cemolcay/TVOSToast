@@ -14,7 +14,9 @@ import ManualLayout
 public extension UIViewController {
 
   public func presentToast(_ toast: TVOSToast) {
-    toast.presentOnView(self.view)
+    if TVOSToast.currentPresentedToast == nil {
+        toast.presentOnView(self.view)
+    }
   }
 }
 
@@ -147,6 +149,7 @@ public struct TVOSToastStyle {
   // appearance
   public var backgroundColor: UIColor?
   public var cornerRadius: CGFloat?
+  public var blurEffectStyle: UIBlurEffectStyle?
   // text style
   public var font: UIFont?
   public var textColor: UIColor?
@@ -164,6 +167,9 @@ public struct TVOSToastStyle {
 // MARK: - Toast
 
 open class TVOSToast: UIView {
+  // The refrence to the currently presented toast. This will prevent multiple toasts from being presented ontop of each other.
+  internal static var currentPresentedToast: TVOSToast?
+    
 
   // MARK: Properties
 
@@ -206,6 +212,7 @@ open class TVOSToast: UIView {
   // MARK: Present
 
   open func presentOnView(_ view: UIView) {
+    TVOSToast.currentPresentedToast = self
 
     // get style
     let position = style.position ?? .bottom(insets: 20)
@@ -219,7 +226,20 @@ open class TVOSToast: UIView {
     self.backgroundColor = backgroundColor
     self.layer.cornerRadius = cornerRadius
     self.alpha = 0
+    self.clipsToBounds = true
     view.addSubview(self)
+    
+    // Apply Blur Effect if set.
+    if let blurEffectStyle = style.blurEffectStyle {
+        let blurEffect = UIBlurEffect(style: blurEffectStyle)
+        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+        blurEffectView.frame = self.bounds
+        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        blurEffectView.layer.cornerRadius = cornerRadius
+        
+        self.addSubview(blurEffectView)
+        self.sendSubview(toBack: blurEffectView)
+    }
 
     // setup text
     if let hintText = hintText {
@@ -279,6 +299,7 @@ open class TVOSToast: UIView {
           },
           completion: { finished in
             self.removeFromSuperview()
+            TVOSToast.currentPresentedToast = nil
           })
       })
   }
