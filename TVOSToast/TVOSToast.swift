@@ -31,8 +31,8 @@ public extension NSAttributedString {
 
   public convenience init(text: String, font: UIFont, color: UIColor) {
     let attributes = [
-      NSAttributedStringKey.font: font,
-      NSAttributedStringKey.foregroundColor: color
+        NSAttributedString.Key.font: font,
+        NSAttributedString.Key.foregroundColor: color
     ]
     self.init(string: text, attributes: attributes)
   }
@@ -149,7 +149,7 @@ public struct TVOSToastStyle {
   // appearance
   public var backgroundColor: UIColor?
   public var cornerRadius: CGFloat?
-  public var blurEffectStyle: UIBlurEffectStyle?
+    public var blurEffectStyle: UIBlurEffect.Style?
   // text style
   public var font: UIFont?
   public var textColor: UIColor?
@@ -219,7 +219,7 @@ open class TVOSToast: UIView {
     let duration = style.duration ?? 3
     let backgroundColor = style.backgroundColor ?? UIColor.gray
     let cornerRadius = style.cornerRadius ?? 10
-    let font = style.font ?? UIFont.preferredFont(forTextStyle: UIFontTextStyle.headline)
+    let font = style.font ?? UIFont.preferredFont(forTextStyle: UIFont.TextStyle.headline)
     let textColor = style.textColor ?? UIColor.white
 
     // setup style
@@ -238,7 +238,7 @@ open class TVOSToast: UIView {
         blurEffectView.layer.cornerRadius = cornerRadius
         
         self.addSubview(blurEffectView)
-        self.sendSubview(toBack: blurEffectView)
+        self.sendSubviewToBack(blurEffectView)
     }
 
     // setup text
