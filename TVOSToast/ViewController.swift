@@ -17,7 +17,7 @@ class ViewController: UIViewController {
     view.addGestureRecognizer(tap)
   }
 
-  open func showToast(tap: UITapGestureRecognizer) {
+  @objc open func showToast(tap: UITapGestureRecognizer) {
     showToastWithAttributedString()
     showToastWithHintText()
     showToastWithText()
@@ -28,7 +28,7 @@ class ViewController: UIViewController {
   func showToastWithHintText() {
     let toast = TVOSToast(frame: CGRect(x: 0, y: 0, width: 800, height: 140))
     toast.style.position = TVOSToastPosition.bottom(insets: 20)
-	toast.hintText = TVOSToastHintText(element: "Press the" + TVOSToastRemoteButtonType.MenuWhite + " button to exit app")
+    toast.hintText = TVOSToastHintText(element: "Press the" + TVOSToastRemoteButtonType.MenuWhite + " button to exit app")
     presentToast(toast)
   }
 
